@@ -1,3 +1,15 @@
+1. Project Structure- 
+       Organize project using the Clean Architecture principles.
+   PatientSearchApi
+|-- PatientSearch.Domain
+|-- PatientSearch.Application
+|-- PatientSearch.Infrastructure
+|-- PatientSearch.Web
+|-- PatientSearch.Tests
+
+
+
+
 Step to use Application-
 
 1- Open Clone repo with your local

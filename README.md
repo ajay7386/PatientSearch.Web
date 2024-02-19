@@ -7,9 +7,6 @@
 |-- PatientSearch.Web
 |-- PatientSearch.Tests
 
-
-
-
 Step to use Application-
 
 1- Open Clone repo with your local

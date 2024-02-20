@@ -33,6 +33,7 @@ namespace PatientSearch.Web.Middleware
             (int statusCode, string errorCode, string errorDescription) = exception switch
             {
                 DataNotFoundException _ => ((int)HttpStatusCode.NotFound, (exception as DataNotFoundException).ErrorCode, (exception as DataNotFoundException).ErrorDescription),
+                BadRequestException _ => ((int)HttpStatusCode.BadRequest, (exception as BadRequestException).ErrorCode, (exception as BadRequestException).ErrorDescription),
                 InvalidInputException => ((int)HttpStatusCode.BadRequest, (exception as InvalidInputException).ErrorCode, (exception as InvalidInputException).ErrorDescription),
                 SystemDataException => ((int)HttpStatusCode.InternalServerError, (exception as SystemDataException).ErrorCode, (exception as SystemDataException).ErrorDescription),
                 ValidateException _ => ((int)HttpStatusCode.BadRequest, (exception as ValidateException).ErrorCode, (exception as ValidateException).ErrorDescription),

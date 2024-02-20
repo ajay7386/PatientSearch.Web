@@ -76,17 +76,13 @@ namespace PatientSearch.Infrastructure.Repositories
             {
                 throw new InvalidInputException("Error while getting data from DB", ErrorStatus.ErrorCode.invalidateInput.ToString(), ex.Message);
             }
-            catch (DataNotFoundException ex)
-            {
-                throw new DataNotFoundException("Error while getting data from DB", ErrorStatus.ErrorCode.dataNotFound.ToString(), ex.Message);
-            }
             catch (SystemDataException ex)
             {
                 throw new DataNotFoundException("Error while getting data from DB", ErrorStatus.ErrorCode.systemError.ToString(), ex.Message);
             }
-            catch (ValidateException ex)
+            catch (BadRequestException ex)
             {
-                throw new DataNotFoundException("Error while getting data from DB", ErrorStatus.ErrorCode.invalidateInput.ToString(), ex.Message);
+                throw new BadRequestException("Error while getting data from DB", ErrorStatus.ErrorCode.badrequest.ToString(), ex.Message);
             }
             catch (Exception ex)
             {

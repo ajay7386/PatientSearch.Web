@@ -7,7 +7,8 @@
             dataNotFound = 1,
             invalidateInput,
             systemError,
-            generalError
+            generalError,
+            badrequest
         }
     }
 }

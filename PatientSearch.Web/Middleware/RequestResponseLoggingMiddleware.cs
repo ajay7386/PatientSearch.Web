@@ -28,7 +28,6 @@ namespace PatientSearch.Web.Middleware
 
                 await _next(context);
 
-
                 var response = await FormatResponse(context.Response);
                 logger.LogInformation($"Response in middleware: {Environment.NewLine} {response}");
 
@@ -58,12 +57,12 @@ namespace PatientSearch.Web.Middleware
         }
     }
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
-    //public static class RequestResponseLoggingMiddlewareExtensions
-    //{
-    //    public static IApplicationBuilder UseRequestResponseLoggingMiddleware(this IApplicationBuilder builder)
-    //    {
-    //        return builder.UseMiddleware<RequestResponseLoggingMiddleware>();
-    //    }
-    //}
+    //Extension method used to add the middleware to the HTTP request pipeline.
+    public static class RequestResponseLoggingMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseRequestResponseLoggingMiddleware(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<RequestResponseLoggingMiddleware>();
+        }
+    }
 }

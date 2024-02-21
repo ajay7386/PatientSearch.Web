@@ -38,11 +38,8 @@ try
     {
         options.UseMemberCasing();
     }).AddFluentValidation(x => x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
-    //builder.Services.AddFluentValidationAutoValidation();
 
     builder.Services.AddScoped<IPatientService, PatientService>();
-   // builder.Services.AddTransient<ErrorHandleMiddleware>();
-    //builder.Services.AddTransient<HstsMiddleware>();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen(c =>
     {
@@ -117,11 +114,7 @@ try
     // Add services to the container.
 
     var app = builder.Build();
-
     
-    app.UseMiddleware<ErrorHandleMiddleware>();
-    
-
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
@@ -130,16 +123,14 @@ try
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "Patient Search API V1");
         });
     }
-    // app.UseMiddleware<ErrorHandleMiddleware>();
-    //app.UseMiddleware<RequestResponseLoggingMiddleware>();
-    //app.UseErrorHandleMiddleware();
-    //app.UseCors("test");
+    app.UseMiddleware<RequestResponseLoggingMiddleware>();
+    app.UseMiddleware<ErrorHandleMiddleware>();
     app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllers();
-    app.UseMiddleware<RequestResponseLoggingMiddleware>();
-
+    
+    
     using (var scope = app.Services.CreateScope())
     {
         var dataContext = scope.ServiceProvider.GetRequiredService<PatientSearchDbContext>();

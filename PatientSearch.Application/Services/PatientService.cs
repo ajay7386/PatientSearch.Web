@@ -26,9 +26,7 @@ namespace PatientSearch.Application.Services
             _logger.LogInformation("Patent Service calling to SearchPatients!");
             try
             {
-                if (patientRequest.Query == null)
-                    throw new DataNotFoundException("No Data for serch Query!", ErrorCode.dataNotFound.ToString(), "No Data for serch Query!");
-
+                
                 return await _patientRepository.SearchPatients(patientRequest);
             }
             catch (InvalidInputException ex)
